@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.gagyi.test.MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="App Name here"
+        android:gravity="center"
+        android:layout_margin="10dp"
+        android:textStyle="bold|italic" />
+
+    <Button
+        android:id="@+id/buttonlog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login" />
+
+    <Button
+        android:id="@+id/buttonreg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register" />
+
+    <Button
+        android:id="@+id/testGestureButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="gesture Test" />
+
+    <Button
+        android:id="@+id/educatorInterfaceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Educator Interface" />
+
+    <Button
+        android:id="@+id/parentInterfaceButton2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parent Interface" />
+
+    <Button
+        android:id="@+id/kidInterfaceButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kid Interface" />
+
+</LinearLayout>

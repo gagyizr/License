@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TestGameOne">
+
+
+    <TextView
+        android:id="@+id/gameOneTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Melyikből van több?" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dip">
+
+            <Button
+                android:id="@+id/dButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D" />
+
+            <Button
+                android:id="@+id/dButton2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="D" />
+
+            <Button
+                android:id="@+id/bButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dip">
+
+            <Button
+                android:id="@+id/bButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B" />
+
+            <Button
+                android:id="@+id/dButton3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="D" />
+
+            <Button
+                android:id="@+id/dButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="D" />
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/gameOneCorrectTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Helyes valaszok: 0" />
+
+    <TextView
+        android:id="@+id/gameOneIncorrectTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Helytelen valaszok: 0" />
+
+    <TextView
+        android:id="@+id/gameOneTotalTaps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Összes tap száma: " />
+
+    <TextView
+        android:id="@+id/gameOneTotalSwipes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Összes swipe száma: " />
+
+    <TextView
+        android:id="@+id/gameOneTotalFlings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Összes fling száma: " />
+
+</LinearLayout>

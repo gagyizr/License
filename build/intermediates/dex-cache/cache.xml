@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\6a51fd4d1bcbc34c99f0ae000e9a7e5170e973e6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="47471eb19df288158b00b8d9cfa41bce7373f5cc">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2ecd17209d6dae2f501aaf15b42bf6f78df47052\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\1f88d8c24232307857d8c97dbe4f9e558c6fec44\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cd200b9d09ee356e10c98329bfcc652519fad7f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\AppData\Local\Android\Sdk\extras\android\m2repository\com\android\support\support-annotations\26.0.0-alpha1\support-annotations-26.0.0-alpha1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="023ee503b631f69511e335a061ea008f8da60f40">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0-alpha1_386a50bec1eab036ae8635100b204589a3850d79\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\414cbe0ab46d46075ee275dba895cd4883380399\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6a022bf00ccd0948a8180c505e8e458bbddd43a6">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5a2b0a1b14c61878fbbe492e0b96ab414ad267de\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\8a3b4123274a53d4ae098ad689a481fb02f10d4d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2224fdc3f1027fe40a687b63f8875d92e2b4d74a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\1066c3ab77bd16e4820a6e2e27ab62764ee9fa4f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b342d5a9c7d98886e643fcb53a291bc6097cd660\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\47bb726f5a7070b9d1f57d1752c61dda75e618c5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c73a52d14daf50c25a3e48e628ccb7b362b7f27f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\8dd57d3a8bb16c025d2c9c759e945021596d3da7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_413c8ca532525905d4c26222c0fe647a19c30872\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\36df7b16ecdc35030f65633c6ee0b253ed196bda\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="18d31838aa4fcc768a8a0516e22cc13b94655d89">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_610d489511e3b0d143f2605048ffe1de6373c507\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\a0a5571f4a91bb8c3f148895a4afb742ec0df6e6\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_25137ac5aae72ede511506b3cc5fa2332f167de9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\6be697164839e453065b37c3900c2e02638a914b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9935891f23923f39d002087085d9696568a9f657">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_08a7d967d6e710c13161b41a41d4557324fa0af5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88669a6e915a8568399a6aed2b9c8fe17f871ffd">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_46e1a870b4647f1a730e9de20ffa44cf98d8e0b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\613193d439a8c85752e205749815ccc8c3a9d4a9\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="88246166d5afb106f532f6e6deae683c66b42c89">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c6a5f093a9a926629f1136defef531f03d2dddb6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\c56310163871f08f1cd5d2fdbca4414e151a7f4a\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fcd01fd11233459f546c437ec927e9b61bf7caf1">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b634b1a3ec55913cbb84ddf7d5d1e5b51966bd0d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\a36368567eba1a0db8751ef165238946dd509305\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ef981ed15273e95ad234ed3521ba00c8f08b9fc1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_de8706e99896e940bfc7ddaacaaac85aebeab2aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\728fc7c36051eab7d168164d4671640108cfba0e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8edd0daf8c521b3c7f0ab791f02ad71ad7884d6a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\9a298166c3319bd7fb7bb14c13e435a70e33892e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8df0e365e40beb151bc42dee20817721a6cab7b0">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f5894c35eae94c2749c8234034d08e240e350b08\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\0ffb6b00df18b0658739e0a27ce39c5b67a35337\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="952944218ecedea1554a513dec0c14d570642843">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_846176bf6815129c82b6029b2237e261144e8bf1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\AppData\Local\Android\Sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_72f2df7612daef5173bd93edbf756906b33e8361\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\06f2a1678564784426fc0f4727273ed5a6969f05\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_159909bb3598f6cae266db825cda46075471adaa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\79f09f92a3d0e3791e70d0e765fa469526dfa051\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b684c1c450cd05e506d8fb6128447d917998632a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\37ba73f4572600cfc56bfab27c725761a38e8575\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ef5c5c707079894cb5ce9cdad79659892aa79334\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\9f52b8bd9cf514d10d8c30ff32a08d6265d4b873\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c4f45092eee6cdf1a5dbd597b2b6819be652ce2e">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_29ac395a757bc46b90dafe546e7debbceeaeca26\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\a834c6d7bb9a7fe79044744393777c48f76564fe\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_db1b78998df7b1fa42c664495b3b08cef3daf488\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\59c02e5443da0daedb7abd960dcf82f4d4df0c10\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="2e92aa0163544a804a0b34f169ca61801770839a">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_24c549e55428451e86129c0af5b577f40e5b183e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\zalan\.android\build-cache\0311970e9bae81e820f4750b4d20bffdb1a87dfa\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cddcd0fb93bc70e27325f2f715b2710332004ebb">
+        <dex dex="D:\Egyetem\Allamvizsga\Test\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fa8f4d2cf34fd39f62697006d50569c618b9f8e8\classes.dex" />
+    </item>
+
+</items>
