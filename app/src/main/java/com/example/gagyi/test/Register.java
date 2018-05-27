@@ -25,10 +25,12 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +67,21 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
      * Keep track of the login task to ensure we can cancel it if requested.
      */
     private UserLoginTask mAuthTask = null;
+
+    //Personal data
+
+    private EditText firstnameET;
+    private EditText lastnameET;
+    private EditText phoneNumberET;
+
+    private String firstName;
+    private String lastName;
+    private long phoneNumber;
+
+    //Privileges
+
+    private Spinner spinner;
+    private String selectedPrivilege;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -98,7 +116,7 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
             }
         };
 
-        // Set up the login form.
+        // Set up the register form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
@@ -124,12 +142,36 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
 
         mLoginFormView = findViewById(R.id.login_form);
         mProgressView = findViewById(R.id.login_progress);
+
+        //privileges Spinner set up
+        spinner = (Spinner)findViewById(R.id.privilegesSpinner);
+        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(Register.this,
+                android.R.layout.simple_list_item_1,
+                getResources().getStringArray(R.array.privileges));
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                selectedPrivilege = adapterView.getItemAtPosition(i).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
+
+        if(mAuth.getCurrentUser() != null){
+
+        }
     }
 
     @Override
@@ -336,7 +378,7 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
         int IS_PRIMARY = 1;
     }
 
-    public void createAccount(String email,String password){
+    public void createAccount(final String email, String password){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -347,15 +389,38 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
-                           // Toast.makeText(EmailPasswordActivity.this, R.string.auth_failed,
-                                   // Toast.LENGTH_SHORT).show();
-                            Log.d("asd","nab");
+                           Toast.makeText(Register.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                           //Log.d("asd","nab");
                         }
                         if(task.isSuccessful()) {
 
-                            Intent LoginIntent = new Intent(Register.this, Login.class);
-                            startActivity(LoginIntent);
-                            finish();
+                            firstnameET = (EditText)findViewById(R.id.firstName);
+                            firstName = firstnameET.getText().toString();
+                            lastnameET = (EditText)findViewById(R.id.lastName);
+                            lastName = lastnameET.getText().toString();
+                            phoneNumberET = (EditText)findViewById(R.id.phone);
+                            phoneNumber = Long.parseLong(phoneNumberET.getText().toString());
+
+                            Customer customer = new Customer(firstName,lastName,email,phoneNumber,selectedPrivilege);
+
+                            FirebaseDatabase.getInstance().getReference("customers")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .setValue(customer).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+
+                                    if(task.isSuccessful()) {
+                                        Intent LoginIntent = new Intent(Register.this, Login.class);
+                                        startActivity(LoginIntent);
+                                        finish();
+                                    }
+                                    else{
+                                        Toast.makeText(Register.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+
+
                         }
 
 
