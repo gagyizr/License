@@ -37,18 +37,21 @@
     <Button
         android:id="@+id/educatorInterfaceButton"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:text="Educator Interface" />
 
     <Button
         android:id="@+id/parentInterfaceButton2"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:text="Parent Interface" />
 
     <Button
         android:id="@+id/kidInterfaceButton"
         android:layout_width="match_parent"
+        android:visibility="invisible"
         android:layout_height="wrap_content"
         android:text="Kid Interface" />
 

@@ -37,6 +37,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,10 +168,47 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                             successfullLogin = true;
                             //Intent UserInterface = new Intent(Login.this, UserInterface.class);
 
-                            Intent UserInterface = new Intent(Login.this, EducatorInterface.class);
+                            if(
+                            FirebaseDatabase.getInstance().getReference("customers")
+                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())!= null){
 
-                            startActivity(UserInterface);
-                            finish();
+                                DatabaseReference ref = FirebaseDatabase.getInstance().getReferenceFromUrl(FirebaseDatabase.getInstance().getReference("customers")
+                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).toString());
+                                ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        Customer customer = dataSnapshot.getValue(Customer.class);
+                                        //System.out.println(group.getEmail());
+                                        switch (customer.getPrivilege()){
+                                            case "Educator":
+                                                Intent educatorInterface = new Intent(Login.this,EducatorInterface.class);
+                                                startActivity(educatorInterface);
+                                                finish();
+                                                break;
+                                            case "Child":
+                                                Intent childInterface = new Intent(Login.this,UserInterface.class);
+                                                startActivity(childInterface);
+                                                finish();
+                                                break;
+                                            case "Parent":
+                                                Intent parentInterface = new Intent(Login.this,ParentInterface.class);
+                                                startActivity(parentInterface);
+                                                finish();
+                                                break;
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {
+
+                                    }
+                                });
+
+                            }
+                            //Intent UserInterface = new Intent(Login.this, EducatorInterface.class);
+
+                            //startActivity(UserInterface);
+                            //finish();
                         }
 
                         // ...

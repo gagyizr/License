@@ -10,9 +10,9 @@ public class Educator {
 
     public String firstName;
     public String lastName;
-    public List<User> children;
+    public String[] children;
 
-    public Educator(String firstName, String lastName, List<User> children) {
+    public Educator(String firstName, String lastName, String[] children) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.children = children;
@@ -34,11 +34,11 @@ public class Educator {
         this.lastName = lastName;
     }
 
-    public List<User> getChildren() {
+    public String[] getChildren() {
         return children;
     }
 
-    public void setChildren(List<User> children) {
+    public void setChildren(String[] children) {
         this.children = children;
     }
 }
