@@ -13,9 +13,9 @@ public class User {
     public String illness;
     public String problemToSolve;
     public String observations;
-    public String diary; //List of Diary
-    public String tasks; //List of tasks
-    public String gamesToPlay; //List of games
+    public List<String> diary; //List of Diary
+    public List<String> tasks; //List of tasks
+    public List<String> gamesToPlay; //List of games
 
     public String getFirstName() {
         return firstName;
@@ -61,7 +61,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, String diary, String tasks, String gamesToPlay) {
+    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.illness = illness;
@@ -72,27 +72,27 @@ public class User {
         this.gamesToPlay = gamesToPlay;
     }
 
-    public String getDiary() {
+    public List<String> getDiary() {
         return diary;
     }
 
-    public void setDiary(String diary) {
+    public void setDiary(List<String> diary) {
         this.diary = diary;
     }
 
-    public String getTasks() {
+    public List<String> getTasks() {
         return tasks;
     }
 
-    public void setTasks(String tasks) {
+    public void setTasks(List<String> tasks) {
         this.tasks = tasks;
     }
 
-    public String getGamesToPlay() {
+    public List<String> getGamesToPlay() {
         return gamesToPlay;
     }
 
-    public void setGamesToPlay(String gamesToPlay) {
+    public void setGamesToPlay(List<String> gamesToPlay) {
         this.gamesToPlay = gamesToPlay;
     }
 }

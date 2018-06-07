@@ -179,21 +179,84 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         Customer customer = dataSnapshot.getValue(Customer.class);
                                         //System.out.println(group.getEmail());
+
                                         switch (customer.getPrivilege()){
                                             case "Educator":
-                                                Intent educatorInterface = new Intent(Login.this,EducatorInterface.class);
-                                                startActivity(educatorInterface);
-                                                finish();
+                                                List<String> children = new ArrayList<String>();
+                                                children.add("PeldA1 gYEREK");
+                                                children.add("Pelda2 gyerek");
+                                                children.add("Pelda3 gyerek");
+                                                Educator educator = new Educator("randomFirstName","randomLastName",children);
+                                                FirebaseDatabase.getInstance().getReference("educators")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .setValue(educator).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if(task.isSuccessful()) {
+                                                            Intent LoginIntent = new Intent(Login.this, EducatorInterface.class);
+                                                            startActivity(LoginIntent);
+                                                            finish();
+                                                        }
+                                                        else{
+                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
                                                 break;
                                             case "Child":
-                                                Intent childInterface = new Intent(Login.this,UserInterface.class);
-                                                startActivity(childInterface);
-                                                finish();
+                                                List<String> diary = new ArrayList<String>();
+                                                diary.add("Jo teljesitmeny");
+                                                diary.add("Rossz teljesitmeny");
+
+                                                List<String> tasks = new ArrayList<String>();
+                                                tasks.add("Feladat 1");
+                                                tasks.add("Feladat 2");
+
+                                                List<String> gamesToPlay = new ArrayList<String>();
+                                                gamesToPlay.add("-Kz30-KanDFVIfai05bi");
+                                                gamesToPlay.add("-Kz309UXURivXwP8ZsPO");
+
+                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay);
+                                                FirebaseDatabase.getInstance().getReference("children")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if(task.isSuccessful()) {
+                                                            Intent LoginIntent = new Intent(Login.this, UserInterface.class);
+                                                            startActivity(LoginIntent);
+                                                            finish();
+                                                        }
+                                                        else{
+                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
                                                 break;
                                             case "Parent":
-                                                Intent parentInterface = new Intent(Login.this,ParentInterface.class);
-                                                startActivity(parentInterface);
-                                                finish();
+                                                children = new ArrayList<String>();
+                                                children.add("PeldA1 gYEREK");
+                                                children.add("Pelda2 gyerek");
+                                                children.add("Pelda3 gyerek");
+                                                Parent parent = new Parent("parent randomFirstName","Parent randomLastName",children);
+                                                FirebaseDatabase.getInstance().getReference("parents")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                        .setValue(parent).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+
+                                                        if(task.isSuccessful()) {
+                                                            Intent LoginIntent = new Intent(Login.this, ParentInterface.class);
+                                                            startActivity(LoginIntent);
+                                                            finish();
+                                                        }
+                                                        else{
+                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                        }
+                                                    }
+                                                });
                                                 break;
                                         }
                                     }
