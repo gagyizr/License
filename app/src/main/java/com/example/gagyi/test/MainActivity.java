@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent RegisterIntent = new Intent(MainActivity.this, Register.class);
                 startActivity(RegisterIntent);
-                finish();
+                //finish();
             }
         });
 
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent LoginIntent = new Intent(MainActivity.this, Login.class);
                 startActivity(LoginIntent);
-                finish();
+                //finish();
             }
         });
 
@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent GestureIntent = new Intent(MainActivity.this, GestureDetection.class);
                 startActivity(GestureIntent);
-                finish();
+                //finish();
             }
         });
 

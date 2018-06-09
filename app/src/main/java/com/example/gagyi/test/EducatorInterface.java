@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,23 +17,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class EducatorInterface extends AppCompatActivity {
 
     private Button addGameButton;
+    private Button selectChildButton;
 
-    ListView gamesListView;
-    List<Game> gamesList;
+    ListView childActivtyLV;
+    List<User> childActivityList;
     List<User> namesList;
 
     ListView activityListiew;
     ListView namesListView;
 
-    String[] tempActivities = {"Activity1","Activity2","Activity3","Activity4","Activity5","Activity6","Activity7","Activity8","Activity9","Activity10",};
-    String[] tempNames = {"Nev1","Nev2","Nev3","Nev4","Nev5","Nev6","Nev7","Nev8","Nev9","Nev10"};
+    String loggedInEducator;
 
     DatabaseReference databaseReference;
 
@@ -41,17 +39,16 @@ public class EducatorInterface extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+        loggedInEducator = FirebaseDatabase.getInstance().getReference("educators")
+                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey();
+
+        Log.d("asdd",loggedInEducator);
+
         activityListiew = (ListView)findViewById(R.id.activities_listview);
         namesListView = (ListView)findViewById(R.id.names_listview);
 
-        ArrayAdapter<String> activitiesAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempActivities);
-        ArrayAdapter<String> namesAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempNames);
-
-        activityListiew.setAdapter(activitiesAdapter);
-        namesListView.setAdapter(namesAdapter);
-
        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-       DatabaseReference ref = database.getReference("games");
+       DatabaseReference ref = database.getReference("children");
 
         namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -63,20 +60,22 @@ public class EducatorInterface extends AppCompatActivity {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                gamesList.clear();
+                childActivityList.clear();
 
                 Log.e("LOG",dataSnapshot.getChildrenCount() + " ");
                 for (DataSnapshot gameSnapShot : dataSnapshot.getChildren()){
 
-                    Game game = gameSnapShot.getValue(Game.class);
-                    Log.e("asddsa" , game.getName());
-                    gamesList.add(game);
+                    User user = gameSnapShot.getValue(User.class);
+
+                    //populate the educators children only into the list
+                    if(user.getEducator().contentEquals(loggedInEducator))
+                        childActivityList.add(user);
 
                 }
 
 
-                GamesList adapter = new GamesList(EducatorInterface.this,gamesList);
-                gamesListView.setAdapter(adapter);
+                ActivityList adapter = new ActivityList(EducatorInterface.this, childActivityList);
+                childActivtyLV.setAdapter(adapter);
             }
 
             @Override
@@ -86,7 +85,8 @@ public class EducatorInterface extends AppCompatActivity {
         });
 
        //final FirebaseDatabase database = FirebaseDatabase.getInstance();
-       DatabaseReference ref2 = database.getReference("names");
+
+       DatabaseReference ref2 = database.getReference("children");
        ref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -96,8 +96,11 @@ public class EducatorInterface extends AppCompatActivity {
                 for (DataSnapshot usersDataSnapshot : dataSnapshot.getChildren()){
 
                    User user = usersDataSnapshot.getValue(User.class);
-                    //Log.e("asddsa" , user.getName());
-                    namesList.add(user);
+
+                   //populate the educators children only into the list
+                    if(user.getEducator().contentEquals(loggedInEducator)) {
+                        namesList.add(user);
+                    }
 
                 }
 
@@ -120,10 +123,11 @@ public class EducatorInterface extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference("names");
 
         setContentView(R.layout.activity_educator_interface);
-        addGameButton = (Button) findViewById(R.id.button9);
-        gamesListView = (ListView) findViewById(R.id.activities_listview);
+        addGameButton = (Button) findViewById(R.id.addGameButton);
+        selectChildButton = (Button) findViewById(R.id.selectChildrenButton);
+        childActivtyLV = (ListView) findViewById(R.id.activities_listview);
 
-        gamesList = new ArrayList<>();
+        childActivityList = new ArrayList<>();
         namesList = new ArrayList<>();
 
         addGameButton.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +135,15 @@ public class EducatorInterface extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(EducatorInterface.this, ListApplications.class);
                 startActivity(intent);
-                finish();
+                //finish();
+            }
+        });
+
+        selectChildButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(EducatorInterface.this, SelectChildren.class);
+                startActivity(intent);
             }
         });
 

@@ -15,16 +15,16 @@ import java.util.List;
  * Created by zalan on 3/19/2018.
  */
 
-public class GamesList extends ArrayAdapter<Game> {
+public class ActivityList extends ArrayAdapter<User> {
 
     private Activity context;
-    private List<Game> gamesList;
+    private List<User> userList;
 
-    public GamesList(Activity context,List<Game> gamesList){
+    public ActivityList(Activity context, List<User> userList){
 
-        super(context,R.layout.gameslist_layout , gamesList);
+        super(context,R.layout.gameslist_layout , userList);
         this.context = context;
-        this.gamesList = gamesList;
+        this.userList = userList;
 
     }
 
@@ -38,10 +38,10 @@ public class GamesList extends ArrayAdapter<Game> {
         TextView textViewName = (TextView)listViewItem.findViewById(R.id.textViewName);
         TextView textViewDescription = (TextView)listViewItem.findViewById(R.id.textViewDescripton);
 
-        Game game = gamesList.get(position);
+        User user = userList.get(position);
 
-        textViewName.setText(game.getName());
-        textViewDescription.setText(game.getDescription());
+        textViewName.setText(user.getCurrentActivity());
+        textViewDescription.setText(user.getProblemToSolve());
 
         return listViewItem;
     }

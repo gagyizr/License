@@ -13,9 +13,27 @@ public class User {
     public String illness;
     public String problemToSolve;
     public String observations;
+    public String currentActivity;
+    public String educator;
     public List<String> diary; //List of Diary
     public List<String> tasks; //List of tasks
     public List<String> gamesToPlay; //List of games
+
+    public String getEducator() {
+        return educator;
+    }
+
+    public void setEducator(String educator) {
+        this.educator = educator;
+    }
+
+    public String getCurrentActivity() {
+        return currentActivity;
+    }
+
+    public void setCurrentActivity(String currentActivity) {
+        this.currentActivity = currentActivity;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -61,7 +79,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay) {
+    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay, String currentActivity, String educator) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.illness = illness;
@@ -70,6 +88,8 @@ public class User {
         this.diary = diary;
         this.tasks = tasks;
         this.gamesToPlay = gamesToPlay;
+        this.currentActivity = currentActivity;
+        this.educator = educator;
     }
 
     public List<String> getDiary() {

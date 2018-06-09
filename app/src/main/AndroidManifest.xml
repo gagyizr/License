@@ -11,8 +11,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Firebase Test App"
+        android:icon="@drawable/logo"
+        android:label="Allamvizsga Dolgozat"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
@@ -36,7 +36,8 @@
         <activity android:name=".GestureDetection" />
         <activity android:name=".TestGameOne" />
         <activity android:name=".EducatorLog" />
-        <activity android:name=".ParentInterface"></activity>
+        <activity android:name=".ParentInterface" />
+        <activity android:name=".SelectChildren"></activity>
     </application>
 
 </manifest>

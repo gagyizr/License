@@ -82,6 +82,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    //For Account Set Up
+    public Educator educatorToSave;
+    public User childToSave;
+    public Parent parentToSave;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -166,7 +171,6 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                         if(task.isSuccessful()){
 
                             successfullLogin = true;
-                            //Intent UserInterface = new Intent(Login.this, UserInterface.class);
 
                             if(
                             FirebaseDatabase.getInstance().getReference("customers")
@@ -178,31 +182,57 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
                                         Customer customer = dataSnapshot.getValue(Customer.class);
-                                        //System.out.println(group.getEmail());
 
                                         switch (customer.getPrivilege()){
                                             case "Educator":
-                                                List<String> children = new ArrayList<String>();
-                                                children.add("PeldA1 gYEREK");
-                                                children.add("Pelda2 gyerek");
-                                                children.add("Pelda3 gyerek");
-                                                Educator educator = new Educator("randomFirstName","randomLastName",children);
-                                                FirebaseDatabase.getInstance().getReference("educators")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                        .setValue(educator).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                educatorToSave = new Educator(customer.getFirstName(),customer.getLastName());
 
-                                                        if(task.isSuccessful()) {
+                                                /*
+                                                Log.d("LoginTag",FirebaseDatabase.getInstance().getReference("educators")
+                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey());
+                                                        */
+
+                                                FirebaseDatabase.getInstance().getReference("educators").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        if(dataSnapshot.hasChild(FirebaseDatabase.getInstance().getReference("educators")
+                                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey()))
+                                                        {
+                                                            Log.d("LoginTag","has Child");
+
                                                             Intent LoginIntent = new Intent(Login.this, EducatorInterface.class);
                                                             startActivity(LoginIntent);
                                                             finish();
-                                                        }
-                                                        else{
-                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+
+                                                        }else{
+                                                            Log.d("LoginTag","Has Not");
+
+                                                            FirebaseDatabase.getInstance().getReference("educators")
+                                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                                    .setValue(educatorToSave).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                    if(task.isSuccessful()) {
+                                                                        Intent LoginIntent = new Intent(Login.this, EducatorInterface.class);
+                                                                        startActivity(LoginIntent);
+                                                                        finish();
+                                                                    }
+                                                                    else{
+                                                                        Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            });
+
                                                         }
                                                     }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
                                                 });
+                                                /**/
                                                 break;
                                             case "Child":
                                                 List<String> diary = new ArrayList<String>();
@@ -217,7 +247,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 gamesToPlay.add("-Kz30-KanDFVIfai05bi");
                                                 gamesToPlay.add("-Kz309UXURivXwP8ZsPO");
 
-                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay);
+                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay, "Offline", "");
                                                 FirebaseDatabase.getInstance().getReference("children")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -236,11 +266,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 });
                                                 break;
                                             case "Parent":
-                                                children = new ArrayList<String>();
-                                                children.add("PeldA1 gYEREK");
-                                                children.add("Pelda2 gyerek");
-                                                children.add("Pelda3 gyerek");
-                                                Parent parent = new Parent("parent randomFirstName","Parent randomLastName",children);
+                                                //children = new ArrayList<String>();
+                                                //children.add("PeldA1 gYEREK");
+                                                //children.add("Pelda2 gyerek");
+                                                //children.add("Pelda3 gyerek");
+                                                Parent parent = new Parent("parent randomFirstName","Parent randomLastName",new ArrayList<String>());
                                                 FirebaseDatabase.getInstance().getReference("parents")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                         .setValue(parent).addOnCompleteListener(new OnCompleteListener<Void>() {
