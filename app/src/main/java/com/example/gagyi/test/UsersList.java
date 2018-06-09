@@ -40,8 +40,8 @@ public class UsersList extends ArrayAdapter<User> {
 
         User user = usersList.get(position);
 
-        textViewName.setText(user.firstName);
-        textViewDescription.setText(user.lastName);
+        textViewName.setText(user.getFirstName());
+        textViewDescription.setText(user.getLastName());
 
         return listViewItem;
     }

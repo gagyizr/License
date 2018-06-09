@@ -10,12 +10,12 @@ public class Parent {
 
     public String lastName;
     public String firstName;
-    public List<String> children;
+    public String child;
 
-    public Parent(String lastName, String firstName, List<String> children) {
+    public Parent(String lastName, String firstName, String child) {
         this.lastName = lastName;
         this.firstName = firstName;
-        this.children = children;
+        this.child = child;
     }
 
     public String getLastName() {
@@ -34,11 +34,11 @@ public class Parent {
         this.firstName = firstName;
     }
 
-    public List<String> getChildren() {
-        return children;
+    public String getChildren() {
+        return child;
     }
 
-    public void setChildren(List<String> children) {
-        this.children = children;
+    public void setChildren(String child) {
+        this.child = child;
     }
 }

@@ -8,16 +8,25 @@ import java.util.List;
 
 public class User {
 
-    public String firstName;
-    public String lastName;
-    public String illness;
-    public String problemToSolve;
-    public String observations;
-    public String currentActivity;
-    public String educator;
-    public List<String> diary; //List of Diary
-    public List<String> tasks; //List of tasks
-    public List<String> gamesToPlay; //List of games
+    private String firstName;
+    private String lastName;
+    private String illness;
+    private String problemToSolve;
+    private String observations;
+    private String currentActivity;
+    private String educator;
+    private String parent;
+    private List<String> diary; //List of Diary
+    private List<String> tasks; //List of tasks
+    private List<String> gamesToPlay; //List of games
+
+    public String getParent() {
+        return parent;
+    }
+
+    public void setParent(String parent) {
+        this.parent = parent;
+    }
 
     public String getEducator() {
         return educator;
@@ -79,7 +88,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay, String currentActivity, String educator) {
+    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay, String currentActivity, String educator , String parent) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.illness = illness;
@@ -90,6 +99,7 @@ public class User {
         this.gamesToPlay = gamesToPlay;
         this.currentActivity = currentActivity;
         this.educator = educator;
+        this.parent = parent;
     }
 
     public List<String> getDiary() {

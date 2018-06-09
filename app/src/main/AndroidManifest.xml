@@ -37,7 +37,8 @@
         <activity android:name=".TestGameOne" />
         <activity android:name=".EducatorLog" />
         <activity android:name=".ParentInterface" />
-        <activity android:name=".SelectChildren"></activity>
+        <activity android:name=".SelectChildren" />
+        <activity android:name=".SelectChildrenParent"></activity>
     </application>
 
 </manifest>

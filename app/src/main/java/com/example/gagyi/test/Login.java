@@ -247,7 +247,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 gamesToPlay.add("-Kz30-KanDFVIfai05bi");
                                                 gamesToPlay.add("-Kz309UXURivXwP8ZsPO");
 
-                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay, "Offline", "");
+                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay, "Offline", "", "");
                                                 FirebaseDatabase.getInstance().getReference("children")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -266,27 +266,50 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 });
                                                 break;
                                             case "Parent":
-                                                //children = new ArrayList<String>();
-                                                //children.add("PeldA1 gYEREK");
-                                                //children.add("Pelda2 gyerek");
-                                                //children.add("Pelda3 gyerek");
-                                                Parent parent = new Parent("parent randomFirstName","Parent randomLastName",new ArrayList<String>());
-                                                FirebaseDatabase.getInstance().getReference("parents")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                        .setValue(parent).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
 
-                                                        if(task.isSuccessful()) {
+                                                parentToSave = new Parent(customer.getFirstName(),customer.getLastName(),"");
+
+                                                FirebaseDatabase.getInstance().getReference("parents").addListenerForSingleValueEvent(new ValueEventListener() {
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        if(dataSnapshot.hasChild(FirebaseDatabase.getInstance().getReference("parents")
+                                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey()))
+                                                        {
+                                                            Log.d("LoginTag","has Child");
+
                                                             Intent LoginIntent = new Intent(Login.this, ParentInterface.class);
                                                             startActivity(LoginIntent);
                                                             finish();
-                                                        }
-                                                        else{
-                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+
+                                                        }else{
+                                                            Log.d("LoginTag","Has Not");
+
+                                                            FirebaseDatabase.getInstance().getReference("parents")
+                                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                                    .setValue(parentToSave).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                    if(task.isSuccessful()) {
+                                                                        Intent LoginIntent = new Intent(Login.this, ParentInterface.class);
+                                                                        startActivity(LoginIntent);
+                                                                        finish();
+                                                                    }
+                                                                    else{
+                                                                        Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            });
+
                                                         }
                                                     }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
                                                 });
+                                                /**/
                                                 break;
                                         }
                                     }
