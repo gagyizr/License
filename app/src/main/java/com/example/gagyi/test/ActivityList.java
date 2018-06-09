@@ -22,7 +22,7 @@ public class ActivityList extends ArrayAdapter<User> {
 
     public ActivityList(Activity context, List<User> userList){
 
-        super(context,R.layout.gameslist_layout , userList);
+        super(context,R.layout.activitylist_layout, userList);
         this.context = context;
         this.userList = userList;
 
@@ -33,7 +33,7 @@ public class ActivityList extends ArrayAdapter<User> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         LayoutInflater inflater = context.getLayoutInflater();
 
-        View listViewItem =  inflater.inflate(R.layout.gameslist_layout,null,true);
+        View listViewItem =  inflater.inflate(R.layout.activitylist_layout,null,true);
 
         TextView textViewName = (TextView)listViewItem.findViewById(R.id.textViewName);
         TextView textViewDescription = (TextView)listViewItem.findViewById(R.id.textViewDescripton);

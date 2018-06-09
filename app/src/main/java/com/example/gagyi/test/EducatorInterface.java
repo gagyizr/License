@@ -57,6 +57,7 @@ public class EducatorInterface extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
