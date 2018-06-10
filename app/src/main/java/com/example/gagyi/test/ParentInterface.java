@@ -9,13 +9,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParentInterface extends AppCompatActivity {
 
@@ -24,16 +27,20 @@ public class ParentInterface extends AppCompatActivity {
 
     Button selectChild;
     Button feladatokButton;
-    Button statisztikaButton;
-    Button mitcsinalButton;
+    Button diaryButton;
+    Button observationsButton;
+    Button mitCsinalButton;
 
-    String[] tempFeladatok = {"Feladat","Feladat","Feladat","Feladat","Feladat","Feladat","Feladat","Feladat","Feladat","Feladat",};
-    String[] tempStatisztika = {"Statisztika","Statisztika","Statisztika","Statisztika","Statisztika","Statisztika","Statisztika","Statisztika","Statisztika","Statisztika"};
-    String[] tempMitCsinal = {"MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal","MitCsinal"};
+    private List<String> tempFeladatok = new ArrayList<>();
+    private List<String> tempDiary = new ArrayList<>();
+    private List<String> tempObservations = new ArrayList<>();
 
     ArrayAdapter<String> feladatokAdapter;
-    ArrayAdapter<String> statisztikaAdapter ;
-    ArrayAdapter<String> mitcsinalAdapter;
+    ArrayAdapter<String> diaryAdapter;
+    ArrayAdapter<String> observationsAdapter;
+
+    private User ownChild;
+    private String whatIsChildDoing;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,15 +90,61 @@ public class ParentInterface extends AppCompatActivity {
             }
         });
 
+        FirebaseDatabase.getInstance().getReference("children").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot childrenDS : dataSnapshot.getChildren()){
+                    if(childrenDS.child("parent").getValue().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
+                        ownChild = childrenDS.getValue(User.class);
+                        //Log.e("Parent Interface",user.getFirstName());
+                    }
+                }
+
+                Log.e("ParentInterface","diary size=" + String.valueOf(ownChild.getDiary().size()));
+                Log.e("ParentInterface","tasks size=" + String.valueOf(ownChild.getTasks().size()));
+                Log.e("ParentInterface","observations size=" + String.valueOf(ownChild.getObservations().size()));
+                //init lists
+                tempObservations = new ArrayList<>();
+                tempDiary = new ArrayList<>();
+                tempObservations = new ArrayList<>();
+
+
+                //add values
+                for(String feladat : ownChild.getTasks()){
+                    tempFeladatok.add(feladat);
+                }
+
+                for(String diaryLog : ownChild.getDiary()){
+                    tempDiary.add(diaryLog);
+                }
+
+                for(String observation : ownChild.getObservations()){
+                    tempObservations.add(observation);
+                }
+
+                whatIsChildDoing = ownChild.getCurrentActivity();
+
+                feladatokAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempFeladatok);
+                diaryAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempDiary);
+                observationsAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempObservations);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
         listView = (ListView)findViewById(R.id.logParentListView);
+
         feladatokButton = (Button)findViewById(R.id.logParentFeladatok);
-        statisztikaButton = (Button)findViewById(R.id.logParentStatisztika);
-        mitcsinalButton = (Button)findViewById(R.id.logParentMitCsinal);
+        diaryButton = (Button)findViewById(R.id.logParentDiaryButton);
+        observationsButton = (Button)findViewById(R.id.logParentStatisztika);
         selectChild = (Button)findViewById(R.id.logParentSelectChildButton);
 
-        feladatokAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempFeladatok);
-        statisztikaAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempStatisztika);
-        mitcsinalAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempMitCsinal);
+
+        ////
 
         feladatokButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,17 +153,25 @@ public class ParentInterface extends AppCompatActivity {
             }
         });
 
-        statisztikaButton.setOnClickListener(new View.OnClickListener() {
+        diaryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listView.setAdapter(statisztikaAdapter);
+                listView.setAdapter(diaryAdapter);
             }
         });
 
-        mitcsinalButton.setOnClickListener(new View.OnClickListener() {
+        observationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listView.setAdapter(mitcsinalAdapter);
+                listView.setAdapter(observationsAdapter);
+            }
+        });
+
+        mitCsinalButton = (Button)findViewById(R.id.logParentMitCsinal) ;
+        mitCsinalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(ParentInterface.this, whatIsChildDoing, Toast.LENGTH_LONG).show();
             }
         });
 
@@ -136,6 +197,14 @@ public class ParentInterface extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+
+        super.onStart();
+        //adapterInit
+
     }
 
     @Override

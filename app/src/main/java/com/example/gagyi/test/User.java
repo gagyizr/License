@@ -12,7 +12,7 @@ public class User {
     private String lastName;
     private String illness;
     private String problemToSolve;
-    private String observations;
+    private List<String> observations;
     private String currentActivity;
     private String educator;
     private String parent;
@@ -76,11 +76,11 @@ public class User {
         this.problemToSolve = problemToSolve;
     }
 
-    public String getObservations() {
+    public List<String> getObservations() {
         return observations;
     }
 
-    public void setObservations(String observations) {
+    public void setObservations(List<String> observations) {
         this.observations = observations;
     }
 
@@ -88,7 +88,7 @@ public class User {
 
     }
 
-    public User(String firstName, String lastName, String illness, String problemToSolve, String observations, List<String> diary, List<String> tasks, List<String> gamesToPlay, String currentActivity, String educator , String parent) {
+    public User(String firstName, String lastName, String illness, String problemToSolve, List<String> observations, List<String> diary, List<String> tasks, List<String> gamesToPlay, String currentActivity, String educator , String parent) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.illness = illness;

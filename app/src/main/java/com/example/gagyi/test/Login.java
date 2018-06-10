@@ -247,7 +247,11 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 gamesToPlay.add("-Kz30-KanDFVIfai05bi");
                                                 gamesToPlay.add("-Kz309UXURivXwP8ZsPO");
 
-                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese","Gyors tanulasi kepesseg",diary,tasks,gamesToPlay, "Offline", "", "");
+                                                List<String> observations = new ArrayList<>();
+                                                observations.add("Hamar tanulja a B betűt");
+                                                observations.add("Nehézségek a az olvasásban");
+
+                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese",observations,diary,tasks,gamesToPlay, "Offline", "", "");
                                                 FirebaseDatabase.getInstance().getReference("children")
                                                         .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                                         .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {

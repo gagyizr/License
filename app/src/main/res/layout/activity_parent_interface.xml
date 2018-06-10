@@ -26,6 +26,13 @@
             android:text="GYEREK\nKIVÁlasztása" />
 
         <Button
+            android:id="@+id/logParentDiaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Oktató\nNaplója" />
+
+        <Button
             android:id="@+id/logParentFeladatok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
