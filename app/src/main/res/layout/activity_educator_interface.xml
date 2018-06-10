@@ -16,13 +16,17 @@
             android:id="@+id/addGameButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add Game" />
+            android:text="Játék\nhozzáadás"
+            android:textSize="10sp" />
 
         <Button
             android:id="@+id/selectChildrenButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select\nChild" />
+            android:text="Gyerek\nkiválasztása"
+            android:textSize="10sp" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -31,7 +35,7 @@
 
         <ListView
             android:id="@+id/names_listview"
-            android:layout_width="200dp"
+            android:layout_width="170dp"
             android:layout_height="wrap_content" />
 
         <ListView

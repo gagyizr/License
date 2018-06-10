@@ -38,6 +38,39 @@
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:text="megfigyelések" />
+
+        <Button
+            android:id="@+id/addDiary"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:text="Naplóba\nbejegyzés"
+             />
+
+        <Button
+            android:id="@+id/addObservation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Megfigyelés\nbejegyzése"
+            />
+
+        <Button
+            android:id="@+id/addGameToChild"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Játék\nhozzárendelése\ngyereknek"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/addTask"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:layout_height="wrap_content"
+            android:text="Feladat\nhozzáadás"
+             />
+
     </LinearLayout>
 
     <ListView

@@ -38,7 +38,11 @@
         <activity android:name=".EducatorLog" />
         <activity android:name=".ParentInterface" />
         <activity android:name=".SelectChildren" />
-        <activity android:name=".SelectChildrenParent"></activity>
+        <activity android:name=".SelectChildrenParent" />
+        <activity android:name=".AddDiary" />
+        <activity android:name=".AddObservation" />
+        <activity android:name=".AddGameToChild" />
+        <activity android:name=".AddTask"></activity>
     </application>
 
 </manifest>

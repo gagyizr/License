@@ -22,6 +22,11 @@ public class EducatorLog extends AppCompatActivity {
     ListView listView;
     TextView nameOfChild;
 
+    private Button addDiaryButton;
+    private Button addObservationButton;
+    private Button addGameToChildButton;
+    private Button addtaskButton;
+
     Button mitButton;
     Button kiadottButton;
     Button megoldottButton;
@@ -46,6 +51,11 @@ public class EducatorLog extends AppCompatActivity {
         kiadottButton = (Button)findViewById(R.id.logKiadott);
         megoldottButton = (Button)findViewById(R.id.logMegoldott);
         nameOfChild = (TextView)findViewById(R.id.educatorLogChildName);
+
+        addDiaryButton = (Button)findViewById(R.id.addDiary);
+        addObservationButton = (Button)findViewById(R.id.addObservation);
+        addGameToChildButton = (Button)findViewById(R.id.addGameToChild);
+        addtaskButton = (Button)findViewById(R.id.addTask);
 
         Intent intent = getIntent();
         Bundle getBundle = intent.getExtras();
@@ -97,5 +107,46 @@ public class EducatorLog extends AppCompatActivity {
             }
         });
 
+        addDiaryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",idOfChild);
+                Intent intent = new Intent(EducatorLog.this,AddDiary.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        addtaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",idOfChild);
+                Intent intent = new Intent(EducatorLog.this,AddTask.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        addObservationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",idOfChild);
+                Intent intent = new Intent(EducatorLog.this,AddObservation.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
+            }
+        });
+
+        addGameToChildButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 }

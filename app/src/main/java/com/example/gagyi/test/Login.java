@@ -87,6 +87,10 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     public User childToSave;
     public Parent parentToSave;
 
+    //empty
+    ArrayList<String> emptyList = new ArrayList<String>();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,6 +98,8 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
+
+        emptyList.add(" ");
 
         successfullLogin = false;
         //firebase
@@ -235,39 +241,50 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
                                                 /**/
                                                 break;
                                             case "Child":
-                                                List<String> diary = new ArrayList<String>();
-                                                diary.add("Jo teljesitmeny");
-                                                diary.add("Rossz teljesitmeny");
+                                                childToSave = new User(customer.getFirstName(),customer.getLastName(),"","",emptyList,emptyList,emptyList,emptyList,"","","");
 
-                                                List<String> tasks = new ArrayList<String>();
-                                                tasks.add("Feladat 1");
-                                                tasks.add("Feladat 2");
 
-                                                List<String> gamesToPlay = new ArrayList<String>();
-                                                gamesToPlay.add("-Kz30-KanDFVIfai05bi");
-                                                gamesToPlay.add("-Kz309UXURivXwP8ZsPO");
-
-                                                List<String> observations = new ArrayList<>();
-                                                observations.add("Hamar tanulja a B betűt");
-                                                observations.add("Nehézségek a az olvasásban");
-
-                                                User user = new User("child randomFirstName","child randomLastName","Dyslexia","A betu felismerese",observations,diary,tasks,gamesToPlay, "Offline", "", "");
-                                                FirebaseDatabase.getInstance().getReference("children")
-                                                        .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                                        .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                FirebaseDatabase.getInstance().getReference("children").addListenerForSingleValueEvent(new ValueEventListener() {
                                                     @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                                        if(dataSnapshot.hasChild(FirebaseDatabase.getInstance().getReference("children")
+                                                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey()))
+                                                        {
+                                                            Log.d("LoginTag","has Child");
 
-                                                        if(task.isSuccessful()) {
                                                             Intent LoginIntent = new Intent(Login.this, UserInterface.class);
                                                             startActivity(LoginIntent);
                                                             finish();
-                                                        }
-                                                        else{
-                                                            Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+
+                                                        }else{
+                                                            Log.d("LoginTag","Has Not");
+
+                                                            FirebaseDatabase.getInstance().getReference("children")
+                                                                    .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                                                    .setValue(childToSave).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                                    if(task.isSuccessful()) {
+                                                                        Intent LoginIntent = new Intent(Login.this, UserInterface.class);
+                                                                        startActivity(LoginIntent);
+                                                                        finish();
+                                                                    }
+                                                                    else{
+                                                                        Toast.makeText(Login.this, R.string.auth_failed, Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                }
+                                                            });
+
                                                         }
                                                     }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+
+                                                    }
                                                 });
+
                                                 break;
                                             case "Parent":
 
