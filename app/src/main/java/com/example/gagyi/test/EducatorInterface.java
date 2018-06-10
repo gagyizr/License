@@ -27,6 +27,7 @@ public class EducatorInterface extends AppCompatActivity {
     ListView childActivtyLV;
     List<User> childActivityList;
     List<User> namesList;
+    List<String> childIDList = new ArrayList<>();
 
     ListView activityListiew;
     ListView namesListView;
@@ -39,10 +40,10 @@ public class EducatorInterface extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
+
         loggedInEducator = FirebaseDatabase.getInstance().getReference("educators")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey();
 
-        Log.d("asdd",loggedInEducator);
 
         activityListiew = (ListView)findViewById(R.id.activities_listview);
         namesListView = (ListView)findViewById(R.id.names_listview);
@@ -53,7 +54,12 @@ public class EducatorInterface extends AppCompatActivity {
         namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",childIDList.get(i));
+
                 Intent intent = new Intent(EducatorInterface.this,EducatorLog.class);
+                intent.putExtras(bundle);
+
                 startActivity(intent);
             }
         });
@@ -62,6 +68,7 @@ public class EducatorInterface extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 childActivityList.clear();
+                childIDList.clear();
 
                 Log.e("LOG",dataSnapshot.getChildrenCount() + " ");
                 for (DataSnapshot gameSnapShot : dataSnapshot.getChildren()){
@@ -69,8 +76,10 @@ public class EducatorInterface extends AppCompatActivity {
                     User user = gameSnapShot.getValue(User.class);
 
                     //populate the educators children only into the list
-                    if(user.getEducator().contentEquals(loggedInEducator))
+                    if(user.getEducator().contentEquals(loggedInEducator)) {
+                        childIDList.add(gameSnapShot.getKey());
                         childActivityList.add(user);
+                    }
 
                 }
 

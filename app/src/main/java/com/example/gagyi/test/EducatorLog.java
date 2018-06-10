@@ -1,27 +1,40 @@
 package com.example.gagyi.test;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EducatorLog extends AppCompatActivity {
 
     ListView listView;
+    TextView nameOfChild;
 
     Button mitButton;
     Button kiadottButton;
     Button megoldottButton;
 
-    String[] tempMitCsinalt = {"MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt","MitCsinalt",};
-    String[] tempKiadottFeladatok = {"KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat","KiadottFeladat"};
-    String[] tempMegoldottFeladatok = {"MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat","MegoldottFeladat"};
+    List<String> tempMitCsinalt = new ArrayList<>();
+    List<String> tempKiadottFeladatok = new ArrayList<>();
+    List<String> tempObservations = new ArrayList<>();
 
     ArrayAdapter<String> mitAdatpet;
     ArrayAdapter<String> kiadottAdapter ;
-    ArrayAdapter<String> megoldottAdapter;
+    ArrayAdapter<String> observationsAdapter;
+
+    String idOfChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +45,36 @@ public class EducatorLog extends AppCompatActivity {
         mitButton = (Button)findViewById(R.id.logMitCsinalt);
         kiadottButton = (Button)findViewById(R.id.logKiadott);
         megoldottButton = (Button)findViewById(R.id.logMegoldott);
+        nameOfChild = (TextView)findViewById(R.id.educatorLogChildName);
 
-        mitAdatpet = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempMitCsinalt);
-        kiadottAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempKiadottFeladatok);
-        megoldottAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,tempMegoldottFeladatok);
+        Intent intent = getIntent();
+        Bundle getBundle = intent.getExtras();
+        if(!getBundle.isEmpty()){
+            idOfChild = getBundle.getString("childID");
+        }
 
-        //listView.setAdapter(mitAdatpet);
-        //namesListView.setAdapter(namesAdapter);
+
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                nameOfChild.setText("Gyerek neve:\n" + user.getFirstName() + " " + user.getLastName());
+
+                tempMitCsinalt.addAll(user.getDiary());
+                tempKiadottFeladatok.addAll(user.getTasks());
+                tempObservations.addAll(user.getObservations());
+
+                mitAdatpet = new ArrayAdapter<>(EducatorLog.this,android.R.layout.simple_list_item_1,tempMitCsinalt);
+                kiadottAdapter = new ArrayAdapter<>(EducatorLog.this,android.R.layout.simple_list_item_1,tempKiadottFeladatok);
+                observationsAdapter = new ArrayAdapter<>(EducatorLog.this,android.R.layout.simple_list_item_1, tempObservations);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         mitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +93,9 @@ public class EducatorLog extends AppCompatActivity {
         megoldottButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listView.setAdapter(megoldottAdapter);
+                listView.setAdapter(observationsAdapter);
             }
         });
+
     }
 }

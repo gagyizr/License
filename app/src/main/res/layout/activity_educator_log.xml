@@ -7,12 +7,12 @@
     tools:context=".EducatorLog">
 
     <LinearLayout
-        android:layout_width="136dp"
+        android:layout_width="160dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/educatorLogChildName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:text="Megoldott Feladatok" />
+            android:text="megfigyelések" />
     </LinearLayout>
 
     <ListView
