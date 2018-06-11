@@ -128,6 +128,8 @@ public class ParentInterface extends AppCompatActivity {
                 diaryAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempDiary);
                 observationsAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempObservations);
 
+                listView.setAdapter(observationsAdapter);
+
             }
 
             @Override
@@ -141,7 +143,7 @@ public class ParentInterface extends AppCompatActivity {
         feladatokButton = (Button)findViewById(R.id.logParentFeladatok);
         diaryButton = (Button)findViewById(R.id.logParentDiaryButton);
         observationsButton = (Button)findViewById(R.id.logParentStatisztika);
-        selectChild = (Button)findViewById(R.id.logParentSelectChildButton);
+        //selectChild = (Button)findViewById(R.id.logParentSelectChildButton);
 
 
         ////
@@ -175,7 +177,7 @@ public class ParentInterface extends AppCompatActivity {
             }
         });
 
-        selectChild.setOnClickListener(new View.OnClickListener() {
+        /*selectChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -196,7 +198,7 @@ public class ParentInterface extends AppCompatActivity {
 
 
             }
-        });
+        });*/
     }
 
     @Override

@@ -89,8 +89,8 @@ public class ListApplications extends ListActivity {
 
 
 
-        Intent intent = new Intent(ListApplications.this,EducatorInterface.class);
-        startActivity(intent);
+        //Intent intent = new Intent(ListApplications.this,EducatorInterface.class);
+        //startActivity(intent);
         finish();
 
         //for starting apps

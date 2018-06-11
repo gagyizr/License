@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#72fff7"
     tools:context=".EducatorLog">
 
     <LinearLayout
@@ -19,6 +20,19 @@
             android:text="Gyerek Neve" />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
+            android:id="@+id/logParentSelectChildButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="szülő\nhozzárendelés" />
+
+        <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/logMitCsinalt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,6 +40,9 @@
             android:text="Mit csinalt" />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/logKiadott"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,6 +50,9 @@
             android:text="Kiadott Feladatok" />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/logMegoldott"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +60,9 @@
             android:text="megfigyelések" />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/addDiary"
             android:layout_width="match_parent"
             android:layout_margin="10dp"
@@ -48,6 +71,9 @@
              />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/addObservation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -56,6 +82,9 @@
             />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/addGameToChild"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,6 +93,9 @@
             android:textSize="10sp" />
 
         <Button
+            style="@style/Base.Widget.AppCompat.Button.Colored"
+            android:backgroundTint="#ffcd77"
+            android:textColor="#000000"
             android:id="@+id/addTask"
             android:layout_width="match_parent"
             android:layout_margin="10dp"

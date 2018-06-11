@@ -5,24 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#afffb6"
     tools:context="com.example.gagyi.test.MainActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Államvizsga Dolgozat"
-        android:textSize="30dp"
-        android:gravity="center"
-        android:layout_margin="15dp"
-        android:textStyle="bold|italic" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="120dp"
+        android:layout_height="170dp"
+        android:layout_gravity="center"
+        android:cropToPadding="true"
+        android:layout_margin="20dp"
+        app:srcCompat="@drawable/logo" />
 
     <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#f4f4f4"
+        android:textColor="#000000"
         android:id="@+id/buttonlog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login" />
 
     <Button
+        style="@style/Base.Widget.AppCompat.Button.Colored"
+        android:backgroundTint="#f4f4f4"
+        android:textColor="#000000"
         android:id="@+id/buttonreg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,14 +40,22 @@
         android:id="@+id/testGestureButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="gesture Test" />
+        android:text="gesture Test"
+        android:visibility="invisible"/>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/mainacitivtybg" />
 
     <Button
         android:id="@+id/educatorInterfaceButton"
         android:layout_width="match_parent"
         android:visibility="invisible"
         android:layout_height="wrap_content"
-        android:text="Educator Interface" />
+        android:text="Educator Interface"
+        android:enabled="false"/>
 
     <Button
         android:id="@+id/parentInterfaceButton2"

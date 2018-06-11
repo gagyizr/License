@@ -19,8 +19,9 @@ import java.util.List;
 
 public class SelectChildrenParent extends AppCompatActivity {
 
-    ListView childrenLV;
-    List<User> childrenList;
+    ListView parentLV;
+    List<Parent> parentsList;
+    String idOfChild;
 
     private List<String> childrenReferences;
 
@@ -29,32 +30,30 @@ public class SelectChildrenParent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_children_parent);
 
-        childrenLV  = (ListView)findViewById(R.id.selectChildrenParentLV);
-        childrenList = new ArrayList<>();
+        parentLV = (ListView)findViewById(R.id.selectChildrenParentLV);
+        parentsList = new ArrayList<>();
         childrenReferences = new ArrayList<>();
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = database.getReference("children");
+        DatabaseReference ref = database.getReference("parents");
 
         ref.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                childrenList.clear();
+                parentsList.clear();
 
                 for (DataSnapshot userDS : dataSnapshot.getChildren()){
 
-                    User user = userDS.getValue(User.class);
-                    if(!user.getParent().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()) && user.getParent().length() < 2) {
-                        childrenReferences.add(userDS.getKey());
-                        childrenList.add(user);
-                    }
+                    Parent parent = userDS.getValue(Parent.class);
 
+                        childrenReferences.add(userDS.getKey());
+                        parentsList.add(parent);
                 }
 
-                UsersList adapter = new UsersList(SelectChildrenParent.this, childrenList);
-                childrenLV.setAdapter(adapter);
+                ParentList adapter = new ParentList(SelectChildrenParent.this, parentsList);
+                parentLV.setAdapter(adapter);
 
             }
 
@@ -64,13 +63,17 @@ public class SelectChildrenParent extends AppCompatActivity {
             }
         });
 
-        childrenLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        parentLV.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                FirebaseDatabase.getInstance().getReference("children").child(childrenReferences.get(i)).child("parent").setValue(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
-                FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").setValue(childrenReferences.get(i));
-                Intent intent = new Intent(SelectChildrenParent.this,ParentInterface.class);
+                Bundle bundle = new Bundle();
+                bundle = getIntent().getExtras();
+                if(!bundle.isEmpty()) {
+                    idOfChild = bundle.getString("childID");
+                }
+                FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("parent").setValue(childrenReferences.get(i));
+                FirebaseDatabase.getInstance().getReference("parents").child(childrenReferences.get(i)).child("child").setValue(idOfChild);
                 finish();
             }
         });

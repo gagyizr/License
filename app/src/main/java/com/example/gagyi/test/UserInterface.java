@@ -89,7 +89,7 @@ public class UserInterface extends AppCompatActivity {
         });
 
 
-        imgsw.setImageResource(R.drawable.common_google_signin_btn_text_light_pressed);
+        imgsw.setImageResource(R.drawable.userinterface2);
 
         /*
         prev = (ImageButton) findViewById(R.id.imageButton);

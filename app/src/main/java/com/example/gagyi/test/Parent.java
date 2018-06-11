@@ -12,6 +12,10 @@ public class Parent {
     public String firstName;
     public String child;
 
+    public Parent (){
+
+    }
+
     public Parent(String lastName, String firstName, String child) {
         this.lastName = lastName;
         this.firstName = firstName;

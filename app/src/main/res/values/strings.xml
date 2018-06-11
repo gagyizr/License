@@ -3,9 +3,10 @@
     <string name="title_activity_register">Sign in</string>
 
     <string-array name="privileges">
+        <item>Child</item>
         <item>Educator</item>
         <item>Parent</item>
-        <item>Child</item>
+
     </string-array>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

@@ -26,6 +26,7 @@ public class EducatorLog extends AppCompatActivity {
     private Button addObservationButton;
     private Button addGameToChildButton;
     private Button addtaskButton;
+    private Button addparentButton;
 
     Button mitButton;
     Button kiadottButton;
@@ -56,6 +57,7 @@ public class EducatorLog extends AppCompatActivity {
         addObservationButton = (Button)findViewById(R.id.addObservation);
         addGameToChildButton = (Button)findViewById(R.id.addGameToChild);
         addtaskButton = (Button)findViewById(R.id.addTask);
+        addparentButton = (Button)findViewById(R.id.logParentSelectChildButton);
 
         Intent intent = getIntent();
         Bundle getBundle = intent.getExtras();
@@ -146,6 +148,17 @@ public class EducatorLog extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+            }
+        });
+
+        addparentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",idOfChild);
+                Intent intent = new Intent(EducatorLog.this,SelectChildrenParent.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
     }

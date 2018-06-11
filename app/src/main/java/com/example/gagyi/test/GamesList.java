@@ -56,7 +56,7 @@ public class GamesList extends ArrayAdapter<Game> {
         Game game = gamesList.get(position);
 
         textViewName.setText(game.getName());
-        textViewPackage.setText(game.getPackageName());
+        textViewPackage.setText(game.getDescription());
         //Uri uri = new Uri.Builder().
         //imageViewIcon.setImageURI();
         /*
