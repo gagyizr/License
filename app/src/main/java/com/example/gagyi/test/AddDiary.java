@@ -32,27 +32,39 @@ public class AddDiary extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = getIntent();
-                Bundle getBundle = intent.getExtras();
-                if(!getBundle.isEmpty()){
-                    idOfChild = getBundle.getString("childID");
-                }
+                GetChildID();
 
-                FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-                        List<String> diaryList = user.getDiary();
-                        diaryList.add(diaryET.getText().toString());
-                        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("diary").setValue(diaryList);
-                        finish();
-                    }
+                AddDiary();
+            }
+        });
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
 
-                    }
-                });
+    }
+
+    void GetChildID(){
+
+        Intent intent = getIntent();
+        Bundle getBundle = intent.getExtras();
+        if(!getBundle.isEmpty()){
+            idOfChild = getBundle.getString("childID");
+        }
+    }
+
+    void AddDiary(){
+
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                List<String> diaryList = user.getDiary();
+                diaryList.add(diaryET.getText().toString());
+                FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("diary").setValue(diaryList);
+                finish();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
     }

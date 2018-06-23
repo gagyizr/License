@@ -86,6 +86,7 @@ public class Login extends AppCompatActivity implements LoaderCallbacks<Cursor> 
     public Educator educatorToSave;
     public User childToSave;
     public Parent parentToSave;
+    private Customer customer;
 
     //empty
     ArrayList<String> emptyList = new ArrayList<String>();

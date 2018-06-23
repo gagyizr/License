@@ -54,13 +54,8 @@ public class EducatorInterface extends AppCompatActivity {
         namesListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle = new Bundle();
-                bundle.putString("childID",childIDList.get(i));
 
-                Intent intent = new Intent(EducatorInterface.this,EducatorLog.class);
-                intent.putExtras(bundle);
-
-                startActivity(intent);
+                OpenLog(i);
             }
         });
 
@@ -76,7 +71,7 @@ public class EducatorInterface extends AppCompatActivity {
                     User user = gameSnapShot.getValue(User.class);
 
                     //populate the educators children only into the list
-                    if(user.getEducator().contentEquals(loggedInEducator)) {
+                    if(user.getEducator() != null && user.getEducator().contentEquals(loggedInEducator)) {
                         childIDList.add(gameSnapShot.getKey());
                         childActivityList.add(user);
                     }
@@ -100,23 +95,7 @@ public class EducatorInterface extends AppCompatActivity {
        ref2.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                namesList.clear();
-
-                Log.e("LOG",dataSnapshot.getChildrenCount() + " ");
-                for (DataSnapshot usersDataSnapshot : dataSnapshot.getChildren()){
-
-                   User user = usersDataSnapshot.getValue(User.class);
-
-                   //populate the educators children only into the list
-                    if(user.getEducator().contentEquals(loggedInEducator)) {
-                        namesList.add(user);
-                    }
-
-                }
-
-
-                UsersList adapter = new UsersList(EducatorInterface.this,namesList);
-                namesListView.setAdapter(adapter);
+                PopulateChildrenList(dataSnapshot);
             }
 
             @Override
@@ -157,6 +136,44 @@ public class EducatorInterface extends AppCompatActivity {
             }
         });
 
+   }
 
-            }
+   private void OpenLog(int i){
+
+       Bundle bundle = new Bundle();
+       bundle.putString("childID",childIDList.get(i));
+
+       Intent intent = new Intent(EducatorInterface.this,EducatorLog.class);
+       intent.putExtras(bundle);
+
+       startActivity(intent);
+   }
+
+   void PopulateChildrenList(DataSnapshot dataSnapshot){
+
+       namesList.clear();
+
+       //Log.e("LOG",dataSnapshot.getChildrenCount() + " ");
+       for (DataSnapshot usersDataSnapshot : dataSnapshot.getChildren()){
+
+           User user = usersDataSnapshot.getValue(User.class);
+
+           //populate the educators children only into the list
+           if(user.getEducator()!= null && user.getEducator().contentEquals(loggedInEducator)) {
+               namesList.add(user);
+           }
+
+       }
+
+
+       UsersList adapter = new UsersList(EducatorInterface.this,namesList);
+       namesListView.setAdapter(adapter);
+   }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        FirebaseAuth.getInstance().signOut();
+    }
 }

@@ -32,20 +32,13 @@ public class AddObservation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = getIntent();
-                Bundle getBundle = intent.getExtras();
-                if(!getBundle.isEmpty()){
-                    idOfChild = getBundle.getString("childID");
-                }
+                GetIdOfChild();
 
                 FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-                        List<String> observationList = user.getObservations();
-                        observationList.add(observationET.getText().toString());
-                        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("observations").setValue(observationList);
-                        finish();
+
+                        AddObservation(dataSnapshot);
 
                     }
 
@@ -56,5 +49,24 @@ public class AddObservation extends AppCompatActivity {
                 });
             }
         });
+
+
+    }
+
+    void GetIdOfChild(){
+
+        Intent intent = getIntent();
+        Bundle getBundle = intent.getExtras();
+        if(!getBundle.isEmpty()){
+            idOfChild = getBundle.getString("childID");
+        }
+    }
+
+    void AddObservation(DataSnapshot dataSnapshot){
+        User user = dataSnapshot.getValue(User.class);
+        List<String> observationList = user.getObservations();
+        observationList.add(observationET.getText().toString());
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("observations").setValue(observationList);
+        finish();
     }
 }

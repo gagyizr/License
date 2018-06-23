@@ -78,6 +78,8 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
     private String lastName;
     private long phoneNumber;
 
+    public Customer educator;
+
     //Privileges
 
     private Spinner spinner;
@@ -99,6 +101,9 @@ public class Register extends AppCompatActivity implements LoaderCallbacks<Curso
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //Set up Firebase
+
+        educator = new Customer();
+
         mAuth = FirebaseAuth.getInstance();
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {

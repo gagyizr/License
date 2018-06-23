@@ -25,7 +25,7 @@
         android:id="@+id/buttonlog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login" />
+        android:text="Bejelentkezés" />
 
     <Button
         style="@style/Base.Widget.AppCompat.Button.Colored"
@@ -34,7 +34,7 @@
         android:id="@+id/buttonreg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register" />
+        android:text="Regisztrálás" />
 
     <Button
         android:id="@+id/testGestureButton"

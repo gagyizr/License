@@ -67,15 +67,21 @@ public class SelectChildrenParent extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
-                Bundle bundle = new Bundle();
-                bundle = getIntent().getExtras();
-                if(!bundle.isEmpty()) {
-                    idOfChild = bundle.getString("childID");
-                }
-                FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("parent").setValue(childrenReferences.get(i));
-                FirebaseDatabase.getInstance().getReference("parents").child(childrenReferences.get(i)).child("child").setValue(idOfChild);
-                finish();
+                AddChildToParent(i);
+
             }
         });
+    }
+
+    void AddChildToParent(int i){
+        Bundle bundle = new Bundle();
+        bundle = getIntent().getExtras();
+        if(!bundle.isEmpty()) {
+            idOfChild = bundle.getString("childID");
+        }
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("parent").setValue(childrenReferences.get(i));
+        FirebaseDatabase.getInstance().getReference("parents").child(childrenReferences.get(i)).child("child").setValue(idOfChild);
+        finish();
+
     }
 }

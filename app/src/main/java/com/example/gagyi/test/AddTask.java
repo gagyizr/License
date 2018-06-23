@@ -32,20 +32,12 @@ public class AddTask extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent intent = getIntent();
-                Bundle getBundle = intent.getExtras();
-                if(!getBundle.isEmpty()){
-                    idOfChild = getBundle.getString("childID");
-                }
+                GetIdOfChild();
 
                 FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        User user = dataSnapshot.getValue(User.class);
-                        List<String> tasksList = user.getTasks();
-                        tasksList.add(taskET.getText().toString());
-                        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("tasks").setValue(tasksList);
-                        finish();
+                        AddTask(dataSnapshot);
                     }
 
                     @Override
@@ -55,5 +47,23 @@ public class AddTask extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    void GetIdOfChild(){
+
+        Intent intent = getIntent();
+        Bundle getBundle = intent.getExtras();
+        if(!getBundle.isEmpty()){
+            idOfChild = getBundle.getString("childID");
+        }
+    }
+
+    void AddTask(DataSnapshot dataSnapshot){
+
+        User user = dataSnapshot.getValue(User.class);
+        List<String> tasksList = user.getTasks();
+        tasksList.add(taskET.getText().toString());
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).child("tasks").setValue(tasksList);
+        finish();
     }
 }

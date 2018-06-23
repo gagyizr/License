@@ -49,7 +49,7 @@ public class SelectChildren extends AppCompatActivity {
 
 
                     User user = userDS.getValue(User.class);
-                    if(!user.getEducator().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()) && user.getEducator().length() < 2) {
+                    if(!user.getEducator().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()) && user.getEducator().length() < 2 || user.getEducator() == null) {
                         childrenReferences.add(userDS.getKey());
                         childrenList.add(user);
                     }

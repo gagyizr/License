@@ -88,25 +88,7 @@ public class ListApplications extends ListActivity {
         });
 
 
-
-        //Intent intent = new Intent(ListApplications.this,EducatorInterface.class);
-        //startActivity(intent);
         finish();
-
-        //for starting apps
-        /*try{
-
-            Intent intent = packageManager.getLaunchIntentForPackage(app.packageName);
-
-            if(intent != null){
-
-                startActivity(intent);
-            }
-        }catch (ActivityNotFoundException e){
-            Toast.makeText(ListApplications.this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }catch (Exception e){
-            Toast.makeText(ListApplications.this,e.getMessage(),Toast.LENGTH_LONG).show();
-        }*/
 
 
     }

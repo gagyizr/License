@@ -49,94 +49,9 @@ public class ParentInterface extends AppCompatActivity {
 
         childNameTV = (TextView)findViewById(R.id.childNameTV);
 
-        FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue().toString().length() > 0)
-                {
-                    FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
+        GetChildName();
 
-                            FirebaseDatabase.getInstance().getReference("children").child(dataSnapshot.getValue().toString()).addListenerForSingleValueEvent(new ValueEventListener() {
-                                @Override
-                                public void onDataChange(DataSnapshot dataSnapshot) {
-                                    User user = dataSnapshot.getValue(User.class);
-                                    childNameTV.setText("Gyerek neve:\n"+ user.getFirstName() + " " + user.getLastName());
-                                }
-
-                                @Override
-                                public void onCancelled(DatabaseError databaseError) {
-
-                                }
-                            });
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
-                else{
-                    childNameTV.setText("Gyerek neve:");
-                }
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        FirebaseDatabase.getInstance().getReference("children").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot childrenDS : dataSnapshot.getChildren()){
-                    if(childrenDS.child("parent").getValue().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
-                        ownChild = childrenDS.getValue(User.class);
-                        //Log.e("Parent Interface",user.getFirstName());
-                    }
-                }
-
-                Log.e("ParentInterface","diary size=" + String.valueOf(ownChild.getDiary().size()));
-                Log.e("ParentInterface","tasks size=" + String.valueOf(ownChild.getTasks().size()));
-                Log.e("ParentInterface","observations size=" + String.valueOf(ownChild.getObservations().size()));
-                //init lists
-                tempObservations = new ArrayList<>();
-                tempDiary = new ArrayList<>();
-                tempObservations = new ArrayList<>();
-
-
-                //add values
-                for(String feladat : ownChild.getTasks()){
-                    tempFeladatok.add(feladat);
-                }
-
-                for(String diaryLog : ownChild.getDiary()){
-                    tempDiary.add(diaryLog);
-                }
-
-                for(String observation : ownChild.getObservations()){
-                    tempObservations.add(observation);
-                }
-
-                whatIsChildDoing = ownChild.getCurrentActivity();
-
-                feladatokAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempFeladatok);
-                diaryAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempDiary);
-                observationsAdapter = new ArrayAdapter<>(ParentInterface.this,android.R.layout.simple_list_item_1,tempObservations);
-
-                listView.setAdapter(observationsAdapter);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+        PopulateData();
 
         listView = (ListView)findViewById(R.id.logParentListView);
 
@@ -177,28 +92,6 @@ public class ParentInterface extends AppCompatActivity {
             }
         });
 
-        /*selectChild.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        if(dataSnapshot.getValue().toString().length()<2){
-                            Intent intent = new Intent(ParentInterface.this,SelectChildrenParent.class);
-                            startActivity(intent);
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
-            }
-        });*/
     }
 
     @Override
@@ -212,6 +105,11 @@ public class ParentInterface extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        GetChildName();
+    }
+
+    void GetChildName(){
 
         FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -253,5 +151,61 @@ public class ParentInterface extends AppCompatActivity {
 
             }
         });
+    }
+
+    void PopulateData(){
+
+        FirebaseDatabase.getInstance().getReference("children").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot childrenDS : dataSnapshot.getChildren()){
+                    if(childrenDS.child("parent").exists() && childrenDS.child("parent").getValue().toString().equals(FirebaseAuth.getInstance().getCurrentUser().getUid().toString())){
+                        ownChild = childrenDS.getValue(User.class);
+                        //Log.e("Parent Interface",user.getFirstName());
+                    }
+                }
+
+                //init lists
+                tempObservations = new ArrayList<>();
+                tempDiary = new ArrayList<>();
+                tempObservations = new ArrayList<>();
+
+                if(ownChild!=null) {
+                    //add values
+                    for (String feladat : ownChild.getTasks()) {
+                        tempFeladatok.add(feladat);
+                    }
+
+                    for (String diaryLog : ownChild.getDiary()) {
+                        tempDiary.add(diaryLog);
+                    }
+
+                    for (String observation : ownChild.getObservations()) {
+                        tempObservations.add(observation);
+                    }
+
+                    whatIsChildDoing = ownChild.getCurrentActivity();
+
+                    feladatokAdapter = new ArrayAdapter<>(ParentInterface.this, android.R.layout.simple_list_item_1, tempFeladatok);
+                    diaryAdapter = new ArrayAdapter<>(ParentInterface.this, android.R.layout.simple_list_item_1, tempDiary);
+                    observationsAdapter = new ArrayAdapter<>(ParentInterface.this, android.R.layout.simple_list_item_1, tempObservations);
+
+                    listView.setAdapter(observationsAdapter);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        FirebaseAuth.getInstance().signOut();
     }
 }

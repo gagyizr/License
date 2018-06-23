@@ -91,30 +91,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        Log.i("Random Key","Clicked");
-
-        if(keyCode == KeyEvent.KEYCODE_HOME){
-            Log.i("Home Button","Clicked");
-            Toast.makeText(MainActivity.this,"Back Button Pressed", Toast.LENGTH_SHORT).show();
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }*/
-
-    /*
-    @Override
-    public boolean dispatchKeyEvent(KeyEvent event) {
-        if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            Log.d("Keycode" , event.getKeyCode()+" key");
-            return true;
-        }
-
-        return super.dispatchKeyEvent(event);
-    }*/
 
 
     //for testing buttons
@@ -135,13 +111,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onKeyUp(keyCode, event);
     }
-
-    /*
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.getWindow().setType(WindowManager.LayoutParams.TYPE_KEYGUARD_DIALOG);
-    }*/
 
     @Override
     public void onBackPressed() {

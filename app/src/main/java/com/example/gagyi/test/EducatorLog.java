@@ -80,6 +80,7 @@ public class EducatorLog extends AppCompatActivity {
                 kiadottAdapter = new ArrayAdapter<>(EducatorLog.this,android.R.layout.simple_list_item_1,tempKiadottFeladatok);
                 observationsAdapter = new ArrayAdapter<>(EducatorLog.this,android.R.layout.simple_list_item_1, tempObservations);
 
+                listView.setAdapter(observationsAdapter);
             }
 
             @Override
@@ -147,7 +148,11 @@ public class EducatorLog extends AppCompatActivity {
         addGameToChildButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("childID",idOfChild);
+                Intent intent = new Intent(EducatorLog.this,AddGameToChild.class);
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
