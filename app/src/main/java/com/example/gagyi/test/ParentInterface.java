@@ -25,7 +25,6 @@ public class ParentInterface extends AppCompatActivity {
     ListView listView;
     TextView childNameTV;
 
-    Button selectChild;
     Button feladatokButton;
     Button diaryButton;
     Button observationsButton;
@@ -91,14 +90,6 @@ public class ParentInterface extends AppCompatActivity {
                 Toast.makeText(ParentInterface.this, whatIsChildDoing, Toast.LENGTH_LONG).show();
             }
         });
-
-    }
-
-    @Override
-    protected void onStart() {
-
-        super.onStart();
-        //adapterInit
 
     }
 

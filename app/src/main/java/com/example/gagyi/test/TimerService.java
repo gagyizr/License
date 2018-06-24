@@ -29,7 +29,7 @@ public class TimerService extends Service {
             @Override
             public void run() {
 
-                if ((SystemClock.elapsedRealtime() - startTime) / 1000.0 >= 60) {
+                if ((SystemClock.elapsedRealtime() - startTime) / 1000.0 >= 600) {
 
                     Bundle b = new Bundle();
                     b.putString("serviceAction", "stop");

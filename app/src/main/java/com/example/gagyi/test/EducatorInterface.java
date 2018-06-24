@@ -21,20 +21,18 @@ import java.util.List;
 
 public class EducatorInterface extends AppCompatActivity {
 
-    private Button addGameButton;
-    private Button selectChildButton;
+    Button addGameButton;
+    Button selectChildButton;
 
-    ListView childActivtyLV;
     List<User> childActivityList;
     List<User> namesList;
     List<String> childIDList = new ArrayList<>();
 
-    ListView activityListiew;
+    ListView childActivtyLV;
     ListView namesListView;
 
     String loggedInEducator;
 
-    DatabaseReference databaseReference;
 
    @Override
     protected void onStart() {
@@ -44,8 +42,6 @@ public class EducatorInterface extends AppCompatActivity {
         loggedInEducator = FirebaseDatabase.getInstance().getReference("educators")
                 .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).getKey();
 
-
-        activityListiew = (ListView)findViewById(R.id.activities_listview);
         namesListView = (ListView)findViewById(R.id.names_listview);
 
        final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -89,7 +85,6 @@ public class EducatorInterface extends AppCompatActivity {
             }
         });
 
-       //final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
        DatabaseReference ref2 = database.getReference("children");
        ref2.addValueEventListener(new ValueEventListener() {
@@ -108,8 +103,6 @@ public class EducatorInterface extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        databaseReference = FirebaseDatabase.getInstance().getReference("names");
 
         setContentView(R.layout.activity_educator_interface);
         addGameButton = (Button) findViewById(R.id.addGameButton);

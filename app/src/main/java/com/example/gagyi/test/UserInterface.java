@@ -26,10 +26,6 @@ import java.util.ServiceConfigurationError;
 
 public class UserInterface extends AppCompatActivity {
 
-    private ImageSwitcher imgsw;
-    private ImageButton prev;
-    private ImageButton next;
-
     ListView gamesLV;
     List<Game> gamesList;
 
@@ -57,22 +53,6 @@ public class UserInterface extends AppCompatActivity {
         });
 
         MakeOffline();
-
-
-
-        imgsw = (ImageSwitcher) findViewById(R.id.imgsw);
-
-        imgsw.setFactory(new ViewSwitcher.ViewFactory() {
-            @Override
-            public View makeView() {
-                ImageView imageView = new ImageView(getApplicationContext());
-                imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                return imageView;
-            }
-        });
-
-
-        imgsw.setImageResource(R.drawable.userinterface2);
 
     }
 

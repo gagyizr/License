@@ -17,100 +17,39 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button educatorInterfaceButton;
-    Button parentInterfaceButton;
-    Button kidInterfaceButton;
+    public Button loginButton;
+    public Button registerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        educatorInterfaceButton = (Button)findViewById(R.id.educatorInterfaceButton);
-        parentInterfaceButton = (Button)findViewById(R.id.parentInterfaceButton2);
-        kidInterfaceButton = (Button)findViewById(R.id.kidInterfaceButton);
-
-        Button button = (Button)findViewById(R.id.buttonreg);
-        button.setOnClickListener(new View.OnClickListener() {
+        registerButton = (Button)findViewById(R.id.buttonreg);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent RegisterIntent = new Intent(MainActivity.this, Register.class);
                 startActivity(RegisterIntent);
-                //finish();
+
             }
         });
 
-        Button loginButton = (Button)findViewById(R.id.buttonlog);
+        loginButton = (Button)findViewById(R.id.buttonlog);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent LoginIntent = new Intent(MainActivity.this, Login.class);
                 startActivity(LoginIntent);
-                //finish();
+
             }
         });
 
-        Button gesturesButton = (Button)findViewById(R.id.testGestureButton);
-        gesturesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent GestureIntent = new Intent(MainActivity.this, GestureDetection.class);
-                startActivity(GestureIntent);
-                //finish();
-            }
-        });
-
-        educatorInterfaceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent Educator = new Intent(MainActivity.this, EducatorInterface.class);
-                startActivity(Educator);
-                //finish();
-            }
-        });
-
-        parentInterfaceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent Parent = new Intent(MainActivity.this, ParentInterface.class);
-                startActivity(Parent);
-                //finish();
-            }
-        });
-
-        kidInterfaceButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent Kid = new Intent(MainActivity.this, UserInterface.class);
-                startActivity(Kid);
-                //finish();
-            }
-        });
     }
 
 
-
-    //for testing buttons
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-
-        switch (keyCode){
-            case KeyEvent.KEYCODE_VOLUME_UP:
-                Log.d("Keycode" , event.getKeyCode()+" key");
-                return true;
-            case KeyEvent.KEYCODE_MENU:
-                Log.d("Keycode" , event.getKeyCode()+" key");
-                return true;
-            case KeyEvent.KEYCODE_SEARCH:
-                Log.d("Keycode" , event.getKeyCode()+" key");
-                return true;
-        }
-
-        return super.onKeyUp(keyCode, event);
-    }
 
     @Override
     public void onBackPressed() {
