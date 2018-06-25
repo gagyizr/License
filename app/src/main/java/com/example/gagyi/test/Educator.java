@@ -11,6 +11,10 @@ public class Educator {
     public String firstName;
     public String lastName;
 
+    public Educator(){
+
+    }
+
     public Educator(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
