@@ -66,11 +66,15 @@ public class EducatorLog extends AppCompatActivity {
         }
 
 
-        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("children").child(idOfChild).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User user = dataSnapshot.getValue(User.class);
                 nameOfChild.setText("Gyerek neve:\n" + user.getFirstName() + " " + user.getLastName());
+
+                tempObservations.clear();
+                tempKiadottFeladatok.clear();
+                tempMitCsinalt.clear();
 
                 tempMitCsinalt.addAll(user.getDiary());
                 tempKiadottFeladatok.addAll(user.getTasks());

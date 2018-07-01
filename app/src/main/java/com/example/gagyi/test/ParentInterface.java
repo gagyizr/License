@@ -102,7 +102,7 @@ public class ParentInterface extends AppCompatActivity {
 
     void GetChildName(){
 
-        FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("parents").child(FirebaseAuth.getInstance().getCurrentUser().getUid().toString()).child("child").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(dataSnapshot.getValue().toString().length() > 0)
@@ -146,7 +146,7 @@ public class ParentInterface extends AppCompatActivity {
 
     void PopulateData(){
 
-        FirebaseDatabase.getInstance().getReference("children").addListenerForSingleValueEvent(new ValueEventListener() {
+        FirebaseDatabase.getInstance().getReference("children").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot childrenDS : dataSnapshot.getChildren()){
@@ -157,12 +157,16 @@ public class ParentInterface extends AppCompatActivity {
                 }
 
                 //init lists
-                tempObservations = new ArrayList<>();
+                tempFeladatok = new ArrayList<>();
                 tempDiary = new ArrayList<>();
                 tempObservations = new ArrayList<>();
 
                 if(ownChild!=null) {
                     //add values
+                    //fel.clear();
+                    tempDiary.clear();
+                    tempObservations.clear();
+
                     for (String feladat : ownChild.getTasks()) {
                         tempFeladatok.add(feladat);
                     }
