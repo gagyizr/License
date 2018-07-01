@@ -43,6 +43,13 @@
         android:text="gesture Test"
         android:visibility="invisible"/>
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@ https://lh5.ggpht.com/kckHk1bHlPCpIKFaZa-ztpf-1WGly7fwxNUnZ0ZYIwU0S79jeGkaUhvpBn5sGKWRDNg=h800"
+        android:textSize="8sp" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
@@ -52,10 +59,10 @@
     <Button
         android:id="@+id/educatorInterfaceButton"
         android:layout_width="match_parent"
-        android:visibility="invisible"
         android:layout_height="wrap_content"
+        android:enabled="false"
         android:text="Educator Interface"
-        android:enabled="false"/>
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/parentInterfaceButton2"
